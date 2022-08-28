@@ -1,0 +1,15 @@
+<grid apply="org.zkoss.bind.BindComposer"
+    viewModel="@id('vm') @init('org.zkoss.zkspringboot.controller.UserViewModel')" model="@bind(vm.users)">
+    <columns>
+        <column label="Name" sort="auto" />
+        <column label="Title" sort="auto" />
+        <column label="Age" sort="auto" />
+    </columns>
+    <template name="model" var="user">
+        <row>
+            <textbox value="@bind(user.id)" />
+            <textbox value="@bind(user.nombre)" />
+			<textbox value="@bind(user.apellido)" />
+        </row>
+    </template>
+</grid>

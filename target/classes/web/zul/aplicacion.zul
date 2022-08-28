@@ -1,0 +1,185 @@
+<window width="1000px" height="1500px" title="Cita medica"
+	border="normal"
+	apply="org.zkoss.zkspringboot.controller.controladordeapp">
+
+
+
+	<grid vflex="1">
+		<columns>
+			<column label="Type" width="150px" />
+			<column label="Content" />
+			<column label="accion" />
+		</columns>
+		<rows>
+
+			<row>
+
+				Tipo de identidad:
+				<searchbox width="300px"
+					id="searchboxtipodeidentificacion" model="${model}"
+					placeholder="selecione un tipo de identificacion"
+					autoclose="true">
+					<template name="model">
+						<label style="color: red"
+							value="${each.nombre}" />
+					</template>
+				</searchbox>
+
+			</row>
+
+			<row>
+				Digite identificación:
+				<intbox id="txtcedula" constraint="no negative,no zero"
+					width="150px" value="1250709209" />
+				<button id="btnverificarcedula" label="VERIFICAR" />
+			</row>
+
+<row>
+
+seleccionar especialidad medica:
+
+<cell colspan="2">
+	<listbox  id="Listboxespecialidad" mold="paging" pageSize="5" emptyMessage="NO HAY DATOS" height="300px" style="margin-top:10px">
+		<listhead>
+			<listheader label="ESPECIALIDADES" />
+		</listhead>
+		<template name="model">
+			<listitem>
+				<listcell label="${each.nombre}"></listcell> 
+			</listitem>
+		</template>
+	</listbox>
+</cell>
+</row>
+
+
+
+
+<row>
+
+SELECCIONAR FECHA DE CITA:
+<datebox id="fechacita" lenient="true" buttonVisible="true" height="40px" width="200px" constraint="no past,no empty"/>
+
+</row>
+
+
+<row>
+
+SELECCIONAR MEDICO:
+
+<bandbox id="bddoctores" mold="rounded"
+					autodrop="true" width="300px" placeholder="selecione un tipo">
+					<bandpopup>
+						<listbox id="ListboxDOCTORES"
+							emptyMessage="vacio" height="250px" width="450px" mold="paging" pageSize="5" 
+							autopaging="true"
+							onSelect="bddoctores.value=self.selectedItem.label; bddoctores.close();">
+							<listhead>
+								<listheader
+									label="seleccione el Tipo de identificacion" />
+							</listhead>
+							<template name="model">
+								<listitem label="${each.nombre}" />
+							</template>
+						</listbox>
+					</bandpopup>
+				</bandbox>
+
+</row>
+
+
+<row>
+
+SELECCIONAR HORARIO:	
+<cell colspan="2">	
+<radiogroup id="radiogroupHorario">
+		<grid>
+			<rows>
+				<row spans="3">
+				Seleccione horario de atención</row>
+				<row>
+					<radio label="12:00 - 12:15" />
+					<radio label="13:00 - 12:15" />
+					<radio label="14:00 - 12:15" />
+				</row>
+				<row>
+					<radio label="12:00 - 12:15" />
+					<radio label="13:00 - 12:15" />
+					<radio label="14:00 - 12:15" />
+				</row>
+				<row>
+					<radio label="12:00 - 12:15" />
+					<radio label="13:00 - 12:15" />
+					<radio label="14:00 - 12:15" />
+				</row>
+			</rows>
+		</grid>
+	</radiogroup>
+</cell>
+
+		
+</row>
+				
+
+
+<row>
+<cell colspan="2">
+</cell>
+<button id="btnagendarcita" label="AGENDAR Y PAGAR" />
+</row>
+			
+			
+			
+			
+			
+
+<row>
+<cell colspan="3">
+	<hbox style="margin-top:20px" id="detalledecita" visible="true">
+		<image src="https://cdn.icon-icons.com/icons2/979/PNG/256/Patient_Male_icon-icons.com_75053.png" id="previewImage" style="padding:10px" />
+		<vbox>
+			<hlayout>
+				DETALLE DE LA CITA 
+			</hlayout>
+			<hlayout>
+				REVISE LA INFORMACION,SI TODO ESTA CORREECTO POR FAVOR CONFIRMAR SU CITA
+			</hlayout>
+			<hlayout>
+				PACIENTE : <label id="lbpaciente" style="font-weight:bold"/>
+			</hlayout>
+			<hlayout>
+				Numero de documento : <label id="lbiddocumento" style="font-weight:bold"/>
+			</hlayout>
+			<hlayout>
+				ESPECIALIDAD : <label id="lbespecialidad" style="font-weight:bold"/>
+			</hlayout>
+			<hlayout>
+				Doctor : <label id="lbdoctor" style="font-weight:bold"/>
+			</hlayout>
+			<hlayout>
+				FECHA : <label id="lbfecha" style="font-weight:bold"/>
+			</hlayout>
+			<hlayout>
+				HORA : <label id="lbhora" style="font-weight:bold"/>
+			</hlayout>
+
+			<hlayout>
+				Valor : <label id="lbvalor" style="font-weight:bold"/> <label id="lbpagado">(No pagado)</label><label id="lbpmetodo"/>
+			</hlayout>
+
+			<button id="btnguardarcredito" label="TARGETA DE CREDITO" />
+			<button id="btnguardardebito" label="TARGETA DE DEBITO" />
+			<button id="btnsalir" label="SALIR" visible="true"/>
+
+		</vbox>
+	</hbox>
+	</cell>
+</row>
+
+
+
+
+		</rows>
+	</grid>
+
+</window>
